@@ -93,16 +93,21 @@
 
 		this.input.parentNode.insertBefore(this.slider, this.input.nextSibling);
 
-        if (this.conf.width) this.slider.style.width = parseInt(this.conf.width) + 'px';
-		this.sliderLeft = this.slider.getBoundingClientRect().left;
-		this.sliderWidth = this.slider.clientWidth;
-		this.pointerWidth = this.pointerL.clientWidth;
+		// delay calculation for modal windows
+		setTimeout(() => {
+			if (this.conf.width) this.slider.style.width = parseInt(this.conf.width) + 'px';
+			this.sliderLeft = this.slider.getBoundingClientRect().left;
+			this.sliderWidth = this.slider.clientWidth;
+			this.pointerWidth = this.pointerL.clientWidth;
 
-		if (!this.conf.scale) this.slider.classList.add(this.cls.noscale);
+			if (!this.conf.scale) this.slider.classList.add(this.cls.noscale);
 
-		return this.setInitialValues();	
+			this.setInitialValues();
+		}, 100);
+
+		return this;
 	};
-
+	
 	RS.prototype.setInitialValues = function () {
 		this.disabled(this.conf.disabled);
 
